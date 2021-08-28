@@ -3,7 +3,9 @@ import { Links } from 'src/components/Links';
 import { Headline } from 'src/components/Headline';
 
 
+
 export function Main({ page }) {
+  
   return (
     <main className={styles.main}>
       <Headline page={page}>

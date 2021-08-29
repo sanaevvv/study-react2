@@ -5,6 +5,7 @@ import { Main } from 'src/components/Main';
 import { Header } from 'src/components/Header';
 
 export default function About() {
+  console.log('about');
   return (
     <div className={styles.container}>
       <Head>

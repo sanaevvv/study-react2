@@ -7,20 +7,30 @@ import { useCallback, useEffect, useState } from 'react';
 
 export default function Home() {
   const [count, setCount] = useState(1);
-  const handleClick = useCallback(
-    () => {
-      if (count < 10) {
-        setCount((prevState) => prevState + 1);
-      }
-    },
-    [count]
-  );
+  const [text, setText] = useState('');
+  const [isShow, setIsShow] = useState(false);
+
+  const handleChange = useCallback((e) => {
+    if (e.target.value.length > 5) {
+      alert('5文字以下にしてください');
+      return;
+    }
+    setText(e.target.value.trim());
+  }, []);
+
+  const handleClick = useCallback(() => {
+    if (count < 10) {
+      setCount((prevState) => prevState + 1);
+    }
+  }, [count]);
+
+  const handleDisplay = useCallback(() => {
+    setIsShow(!isShow);
+  }, []);
 
   useEffect(() => {
-    console.log('マウント時');
     document.body.style.backgroundColor = 'lightblue';
     return () => {
-      console.log('アンマウント時');
       document.body.style.backgroundColor = '';
     };
   }, []);
@@ -35,6 +45,8 @@ export default function Home() {
       <Header />
       <h1>{count}</h1>
       <button onClick={handleClick}>ボタン</button>
+      <button onClick={handleDisplay}>{isShow ? '非表示' : '表示'}</button>
+      <input value={text} onChange={handleChange} />
 
       <Main page="index" />
 

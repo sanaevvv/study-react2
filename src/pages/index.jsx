@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from 'react';
 export default function Home() {
   const [count, setCount] = useState(1);
   const [text, setText] = useState('');
-  const [isShow, setIsShow] = useState(false);
+  const [isShow, setIsShow] = useState(true);
 
   const handleChange = useCallback((e) => {
     if (e.target.value.length > 5) {
@@ -25,7 +25,7 @@ export default function Home() {
   }, [count]);
 
   const handleDisplay = useCallback(() => {
-    setIsShow(!isShow);
+    setIsShow((preState) => !preState);
   }, []);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function Home() {
       </Head>
 
       <Header />
-      <h1>{count}</h1>
+      {isShow ? <h1>{count}</h1> : null}
       <button onClick={handleClick}>ボタン</button>
       <button onClick={handleDisplay}>{isShow ? '非表示' : '表示'}</button>
       <input value={text} onChange={handleChange} />

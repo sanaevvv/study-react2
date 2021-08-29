@@ -3,49 +3,14 @@ import styles from '../styles/Home.module.css';
 import { Footer } from '../components/Footer';
 import { Main } from '../components/Main';
 import { Header } from '../components/Header';
-import { useCallback, useEffect, useState } from 'react';
+import { useCounter } from 'src/hooks/useCounter';
+import { useInputArray } from 'src/hooks/useInputArray';
+import { useBgLightblue } from 'src/hooks/useBgLightblue';
 
 export default function Home() {
-  const [count, setCount] = useState(1);
-  const [text, setText] = useState('');
-  const [isShow, setIsShow] = useState(true);
-  const [array, setArray] = useState([]);
-
-  const handleChange = useCallback((e) => {
-    if (e.target.value.length > 5) {
-      alert('5文字以下にしてください');
-      return;
-    }
-    setText(e.target.value.trim());
-  }, []);
-
-  const handleClick = useCallback(() => {
-    if (count < 10) {
-      setCount((prevState) => prevState + 1);
-    }
-  }, [count]);
-
-  const handleDisplay = useCallback(() => {
-    setIsShow((prevState) => !prevState);
-  }, []);
-
-  const handleAdd = useCallback(() => {
-    setArray((prevState) => {
-      if (prevState.some(item => item === text)) {
-        alert('同じ要素がすでに存在します')
-        return prevState;
-      }
-      const newState = [...prevState, text];
-      return newState;
-    });
-  }, [text]);
-
-  useEffect(() => {
-    document.body.style.backgroundColor = 'lightblue';
-    return () => {
-      document.body.style.backgroundColor = '';
-    };
-  }, []);
+  const { count, isShow, handleClick, handleDisplay } = useCounter();
+  const { text, array, handleChange, handleAdd } = useInputArray();
+  useBgLightblue();
 
   return (
     <div className={styles.container}>
@@ -58,6 +23,7 @@ export default function Home() {
       {isShow ? <h1>{count}</h1> : null}
       <button onClick={handleClick}>ボタン</button>
       <button onClick={handleDisplay}>{isShow ? '非表示' : '表示'}</button>
+
       <input value={text} onChange={handleChange} />
       <button onClick={handleAdd}>追加</button>
       <ul>

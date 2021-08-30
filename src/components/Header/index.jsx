@@ -1,15 +1,30 @@
 import Link from 'next/link';
-import styles from "src/components/Header/Header.module.css";
+import styles from 'src/components/Header/Header.module.css';
 
+const NAV_ITEMS = [
+  {
+    href: '/',
+    label: 'index',
+  },
+  {
+    href: '/about',
+    label: 'About',
+  },
+  {
+    href: '/todo',
+    label: 'Todo',
+  },
+];
 export const Header = () => {
   return (
     <header className={styles.header}>
-      <Link href="/">
-        <a>Index</a>
-      </Link>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
+      {NAV_ITEMS.map((item) => {
+        return (
+          <Link key={item.href} href={item.href}>
+            <a>{item.label}</a>
+          </Link>
+        );
+      })}
     </header>
   );
 };

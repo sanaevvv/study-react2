@@ -4,7 +4,7 @@ import { Footer } from '../components/Footer';
 import { Main } from '../components/Main';
 import { Header } from '../components/Header';
 
-export default function Home({
+const Home=({
   count,
   isShow,
   handleClick,
@@ -13,7 +13,7 @@ export default function Home({
   array,
   handleChange,
   handleAdd,
-}) {
+})=> {
   return (
     <div className={styles.container}>
       <Head>
@@ -39,3 +39,5 @@ export default function Home({
     </div>
   );
 }
+
+export default Home;

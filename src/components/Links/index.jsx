@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'react';
 import styles from 'src/components/Links/Links.module.css';
 
 const ITEMS = [
@@ -24,16 +25,24 @@ const ITEMS = [
 ];
 
 export function Links() {
+  const [items, setItems] = useState(ITEMS);
+  const handleReduce = useCallback(() => {
+    setItems((items) => {
+      items.slice(0, items.length - 1);
+    });
+  }, []);
+
   return (
     <div className={styles.grid}>
-      {ITEMS.map((item) => {
+      {items.map((item) => {
         return (
-          <a key={ item.href} href={item.href} className={styles.card}>
+          <a key={item.index} href={item.href} className={styles.card}>
             <h2>{item.title}</h2>
             <p>{item.body}</p>
           </a>
         );
       })}
+      <button onClick={handleReduce}>減らす</button>
     </div>
   );
 }

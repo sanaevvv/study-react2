@@ -3,8 +3,8 @@ import styles from 'src/components/Header/Header.module.css';
 
 const NAV_ITEMS = [
   {
-    href: '/',
-    label: 'index',
+    href: '/posts',
+    label: 'Posts',
   },
   {
     href: '/about',

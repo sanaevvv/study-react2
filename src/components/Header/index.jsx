@@ -3,12 +3,12 @@ import styles from 'src/components/Header/Header.module.css';
 
 const NAV_ITEMS = [
   {
-    href: '/posts',
-    label: 'Posts',
+    href: '/',
+    label: 'Index',
   },
   {
-    href: '/about',
-    label: 'About',
+    href: '/posts',
+    label: 'Posts',
   },
   {
     href: '/todo',

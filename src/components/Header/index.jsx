@@ -11,6 +11,14 @@ const NAV_ITEMS = [
     label: 'Posts',
   },
   {
+    href: '/users',
+    label: 'Users',
+  },
+  {
+    href: '/comments',
+    label: 'Comments',
+  },
+  {
     href: '/todo',
     label: 'Todo',
   },

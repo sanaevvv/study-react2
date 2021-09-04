@@ -14,13 +14,15 @@ export const useFetchArray = (url) => {
 const API_URL = 'https://jsonplaceholder.typicode.com';
 
 export const useComments = () => {
-  return useFetchArray(`${API_URL}/comments`, fetcher);
+  return useFetchArray(`${API_URL}/comments`);
 };
 
 export const usePosts = () => {
-  return useFetchArray(`${API_URL}/posts`, fetcher);
+  return useFetchArray(`${API_URL}/posts`);
 };
 
 export const useUsers = () => {
-  return useFetchArray(`${API_URL}/users`, fetcher);
+  return useFetchArray(`${API_URL}/users`);
 };
+
+export const useCommentsByPostsId = (id) => useFetchArray(id?`${API_URL}/comments?postId=${id}`:null);

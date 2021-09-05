@@ -25,4 +25,11 @@ export const useUsers = () => {
   return useFetchArray(`${API_URL}/users`);
 };
 
-export const useCommentsByPostsId = (id) => useFetchArray(id?`${API_URL}/comments?postId=${id}`:null);
+export const useCommentsByPostsId = (id) =>
+  useFetchArray(id ? `${API_URL}/comments?postId=${id}` : null);
+
+export const usePostsByUserId = (id) =>
+  useFetchArray(id ? `${API_URL}/posts?userId=${id}` : null);
+
+export const useCommentsByUserId = (id) =>
+  useFetchArray(id ? `${API_URL}/comments?userId=${id}` : null);

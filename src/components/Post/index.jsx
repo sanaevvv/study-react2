@@ -2,17 +2,11 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { CommentsByPostId } from 'src/components/Comments/commentsByPostId';
 import { UserByUserId } from 'src/components/User/UserByUserId';
-import { fetcher } from 'src/utils/fetcher';
-import useSWR from 'swr';
+import { usePost } from 'src/hooks/usePost';
 
 export const Post = () => {
-const router = useRouter();
-  const { data, error, isLoading} = useSWR(
-    router.query.id
-      ? `https://jsonplaceholder.typicode.com/posts/${router.query.id}`
-      : null,
-    fetcher
-  );
+  const router = useRouter();
+  const { data, error, isLoading } = usePost(router.query.id);
 
   if (error) {
     return <div>{error.message}</div>;

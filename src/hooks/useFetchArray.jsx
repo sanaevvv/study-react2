@@ -1,4 +1,4 @@
-import { fetcher } from 'src/utils/fetcher';
+import { fetcher } from 'src/pages/utils/fetcher';
 import useSWR from 'swr';
 
 export const useFetchArray = (url) => {

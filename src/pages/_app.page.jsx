@@ -1,6 +1,18 @@
 import Head from 'next/head';
 import 'src/styles/globals.css';
 import { Layout } from 'src/components/Layout';
+import { SWRConfig } from 'swr';
+
+export const fetcher = async (url) => {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error('エラーが発生したため、データの取得に失敗しました');
+  }
+  const json = await response.json();
+  return json;
+};
+
 
 const MyApp = ({ Component, pageProps }) => {
   return (
@@ -8,9 +20,11 @@ const MyApp = ({ Component, pageProps }) => {
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <SWRConfig value={{fetcher}}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
+      </SWRConfig>
     </>
   );
 };
